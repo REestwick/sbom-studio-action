@@ -1,21 +1,20 @@
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import path from 'path';
 
 export default {
-  entry: './index.js', // Entry point for the action code
+  entry: './index.js',  // The entry point of your action
   output: {
-    path: path.resolve(__dirname, 'dist'), // Output directory
-    filename: 'index.js', // Bundled output file
-    // libraryTarget: 'umd', // Universal Module Definition (works with Node, AMD, and CommonJS)
-    library: {
-        type: "module",
-      }
+    filename: 'index.js',  // Output file in the dist folder
+    path: path.resolve('dist'),
+    libraryTarget: 'module',  // Output as an ES module
+    chunkFormat: 'module',    // Ensure all chunks are ES modules
   },
-  mode: 'production', // Bundle for production (minification, etc.)
-//   target: 'node', // GitHub Actions runs in a Node.js environment
-experiments: {
-    outputModule: true,
-  }
+  target: 'node',            // Set target to Node.js (since GitHub Actions uses Node)
+  experiments: {
+    outputModule: true,      // Ensure Webpack outputs ES modules
+    topLevelAwait: true
+  },
+  resolve: {
+    extensions: ['.js'],     // Resolve .js files for ES modules
+  },
+  mode: 'production',        // Minify for production
 };
