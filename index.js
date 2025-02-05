@@ -18,6 +18,8 @@ const sbomComponentName = process.env.INPUT_SBOMCOMPONENTNAME.trim()
 const namespace = process.env.INPUT_NAMESPACE.trim()
 const sbomComponentVersion = process.env.INPUT_SBOMCOMPONENTVERSION.trim()
 const sbomQuality = process.env.INPUT_SBOMQUALITY.trim()
+const sbomAutocorrection = process.env.INPUT_SBOMAUTOCORRECTION.trim()
+const sbomLicenseCorrection = process.env.INPUT_SBOMLICENSECORRECTION.trim()
 const noProxy = !process.env.NO_PROXY? process.env.no_proxy : process.env.NO_PROXY;
 
 let contentType;
@@ -86,7 +88,9 @@ const jsonBody = generateJson(
     pkgType,
     sbomComponentName,
     sbomComponentVersion,
-    namespace
+    namespace,
+    sbomAutocorrection,
+    sbomLicenseCorrection
 );
 if (jsonBody == "") {
     console.log("Wrong config.")
