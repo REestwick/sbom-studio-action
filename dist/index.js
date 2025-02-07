@@ -33855,6 +33855,8 @@ const sbomComponentName = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('s
 const namespace = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('namespace');
 const sbomComponentVersion = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomComponentVersion');
 const sbomQuality = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomQuality');
+const sbomAutocorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getBooleanInput('sbomAutocorrection');
+const sbomLicenseCorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getBooleanInput('sbomLicenseCorrection');
 
 const noProxy = !process.env.NO_PROXY? process.env.no_proxy : process.env.NO_PROXY;
 
@@ -33924,7 +33926,9 @@ const jsonBody = (0,_service_json_generator_js__WEBPACK_IMPORTED_MODULE_6__/* .g
     pkgType,
     sbomComponentName,
     sbomComponentVersion,
-    namespace
+    namespace,
+    sbomAutocorrection,
+    sbomLicenseCorrection
 );
 if (jsonBody == "") {
     console.log("Wrong config.")
@@ -36904,7 +36908,9 @@ function generateJson(
     pkgType,
     sbomComponenentName,
     sbomComponentVersion,
-    namespace
+    namespace,
+    sbomAutocorrection,
+    sbomLicenseCorrection
 ) {
     let jsonBody = {
         type: "catalog",
@@ -36932,7 +36938,10 @@ function generateJson(
         jsonBody["manufactureName"] = manufactureName;
     if (isDefined(supplierName)) jsonBody["supplierName"] = supplierName;
     if (component !== undefined) jsonBody["sbomComponent"] = component;
-
+    if (isDefined(sbomAutocorrection) && (typeof sbomAutocorrection == 'boolean')) jsonBody["sbomAutoCorrection"] = sbomAutocorrection;
+    if (isDefined(sbomLicenseCorrection) && (typeof sbomLicenseCorrection == 'boolean')) jsonBody["sbomLicenseCorrection"] = sbomLicenseCorrection;
+   
+    console.log(jsonBody);
     return jsonBody;
 };
 
