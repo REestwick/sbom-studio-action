@@ -33855,8 +33855,10 @@ const sbomComponentName = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('s
 const namespace = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('namespace');
 const sbomComponentVersion = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomComponentVersion');
 const sbomQuality = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomQuality');
-const sbomAutocorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getBooleanInput('sbomAutocorrection');
-const sbomLicenseCorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getBooleanInput('sbomLicenseCorrection');
+// const sbomAutocorrection = core.getBooleanInput('sbomAutocorrection');
+// const sbomLicenseCorrection = core.getBooleanInput('sbomLicenseCorrection');
+const sbomAutocorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomAutocorrection');
+const sbomLicenseCorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomLicenseCorrection');
 
 const noProxy = !process.env.NO_PROXY? process.env.no_proxy : process.env.NO_PROXY;
 
@@ -36938,10 +36940,10 @@ function generateJson(
         jsonBody["manufactureName"] = manufactureName;
     if (isDefined(supplierName)) jsonBody["supplierName"] = supplierName;
     if (component !== undefined) jsonBody["sbomComponent"] = component;
-    if (isDefined(sbomAutocorrection) && (typeof sbomAutocorrection == 'boolean')) jsonBody["sbomAutoCorrection"] = sbomAutocorrection;
-    if (isDefined(sbomLicenseCorrection) && (typeof sbomLicenseCorrection == 'boolean')) jsonBody["sbomLicenseCorrection"] = sbomLicenseCorrection;
+    // if (isDefined(sbomAutocorrection) && (typeof sbomAutocorrection == 'boolean')) jsonBody["sbomAutoCorrection"] = sbomAutocorrection;
+    // if (isDefined(sbomLicenseCorrection) && (typeof sbomLicenseCorrection == 'boolean')) jsonBody["sbomLicenseCorrection"] = sbomLicenseCorrection;
    
-    console.log(jsonBody);
+    // console.log(jsonBody);
     return jsonBody;
 };
 
