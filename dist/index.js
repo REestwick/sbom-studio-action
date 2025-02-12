@@ -37109,10 +37109,10 @@ function generateJson(
         jsonBody["manufactureName"] = manufactureName;
     if (isDefined(supplierName)) jsonBody["supplierName"] = supplierName;
     if (component !== undefined) jsonBody["sbomComponent"] = component;
-    // if (isDefined(sbomAutocorrection) && (typeof sbomAutocorrection == 'boolean')) jsonBody["sbomAutoCorrection"] = sbomAutocorrection;
-    // if (isDefined(sbomLicenseCorrection) && (typeof sbomLicenseCorrection == 'boolean')) jsonBody["sbomLicenseCorrection"] = sbomLicenseCorrection;
+    if (isDefined(sbomAutocorrection) && (typeof sbomAutocorrection == 'boolean')) jsonBody["sbomAutoCorrection"] = sbomAutocorrection;
+    if (isDefined(sbomLicenseCorrection) && (typeof sbomLicenseCorrection == 'boolean')) jsonBody["sbomLicenseCorrection"] = sbomLicenseCorrection;
    
-    // console.log(jsonBody);
+    console.log(jsonBody);
     return jsonBody;
 };
 
