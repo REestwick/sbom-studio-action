@@ -19,12 +19,15 @@ const sbomComponentName = core.getInput('sbomComponentName');
 const namespace = core.getInput('namespace');
 const sbomComponentVersion = core.getInput('sbomComponentVersion');
 const sbomQuality = core.getInput('sbomQuality');
-// const sbomAutocorrection = core.getBooleanInput('sbomAutocorrection');
-// const sbomLicenseCorrection = core.getBooleanInput('sbomLicenseCorrection');
-const sbomAutocorrection = core.getInput('sbomAutocorrection');
-const sbomLicenseCorrection = core.getInput('sbomLicenseCorrection');
+const sbomAutocorrection = core.getBooleanInput('sbomAutocorrection');
+const sbomLicenseCorrection = core.getBooleanInput('sbomLicenseCorrection');
+// const sbomAutocorrection = core.getInput('sbomAutocorrection');
+// const sbomLicenseCorrection = core.getInput('sbomLicenseCorrection');
 
 const noProxy = !process.env.NO_PROXY? process.env.no_proxy : process.env.NO_PROXY;
+
+console.log(sbomAutocorrection);
+console.log(sbomLicenseCorrection);
 
 let contentType;
 if (!url || !filePath || !secretAccessKey || !accessKey || !subType) {
