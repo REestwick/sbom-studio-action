@@ -19,15 +19,37 @@ const sbomComponentName = core.getInput('sbomComponentName');
 const namespace = core.getInput('namespace');
 const sbomComponentVersion = core.getInput('sbomComponentVersion');
 const sbomQuality = core.getInput('sbomQuality');
-const sbomAutocorrection = core.getBooleanInput('sbomAutocorrection');
-const sbomLicenseCorrection = core.getBooleanInput('sbomLicenseCorrection');
-// const sbomAutocorrection = core.getInput('sbomAutocorrection');
-// const sbomLicenseCorrection = core.getInput('sbomLicenseCorrection');
+const inputsbomAutocorrection = core.getInput('sbomAutocorrection');
+const inputsbomLicenseCorrection = core.getInput('sbomLicenseCorrection');
 
 const noProxy = !process.env.NO_PROXY? process.env.no_proxy : process.env.NO_PROXY;
 
-console.log(sbomAutocorrection);
-console.log(sbomLicenseCorrection);
+let sbomAutocorrection;
+let sbomLicenseCorrection;
+
+const bools = ['true', 'false'];
+
+if (inputsbomAutocorrection) {
+    
+    if (bools.includes(inputsbomAutocorrection.toLowerCase())){
+    sbomAutocorrection = inputsbomAutocorrection.toLowerCase() == 'true'? true : false;
+    }
+    else {
+        console.log("sbomAutocorrection must have a value of either true or false");
+        process.exit(1); 
+    }
+}
+
+if (inputsbomLicenseCorrection) {
+    
+    if (bools.includes(inputsbomLicenseCorrection.toLowerCase())){
+    sbomLicenseCorrection = inputsbomLicenseCorrection.toLowerCase() == 'true'? true : false;
+    }
+    else {
+        console.log("sbomLicenseCorrection must have a value of either true or false");
+        process.exit(1);
+    }
+}
 
 let contentType;
 if (!url || !filePath || !secretAccessKey || !accessKey || !subType) {

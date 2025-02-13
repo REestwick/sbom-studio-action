@@ -38,10 +38,9 @@ export function generateJson(
         jsonBody["manufactureName"] = manufactureName;
     if (isDefined(supplierName)) jsonBody["supplierName"] = supplierName;
     if (component !== undefined) jsonBody["sbomComponent"] = component;
-    if (isDefined(sbomAutocorrection) && (typeof sbomAutocorrection == 'boolean')) jsonBody["sbomAutoCorrection"] = sbomAutocorrection;
-    if (isDefined(sbomLicenseCorrection) && (typeof sbomLicenseCorrection == 'boolean')) jsonBody["sbomLicenseCorrection"] = sbomLicenseCorrection;
-   
-    console.log(jsonBody);
+    if ((sbomAutocorrection != undefined) && (typeof sbomAutocorrection == 'boolean')) jsonBody["autocorrection"] = sbomAutocorrection;
+    if ((sbomLicenseCorrection != undefined) && (typeof sbomLicenseCorrection == 'boolean')) jsonBody["licenseAutocorrection"] = sbomLicenseCorrection;
+
     return jsonBody;
 };
 

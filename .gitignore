@@ -104,3 +104,6 @@ typings/
 .tern-port
 
 .idea/
+
+
+load.sh

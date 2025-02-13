@@ -34021,15 +34021,37 @@ const sbomComponentName = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('s
 const namespace = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('namespace');
 const sbomComponentVersion = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomComponentVersion');
 const sbomQuality = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomQuality');
-const sbomAutocorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getBooleanInput('sbomAutocorrection');
-const sbomLicenseCorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getBooleanInput('sbomLicenseCorrection');
-// const sbomAutocorrection = core.getInput('sbomAutocorrection');
-// const sbomLicenseCorrection = core.getInput('sbomLicenseCorrection');
+const inputsbomAutocorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomAutocorrection');
+const inputsbomLicenseCorrection = _actions_core__WEBPACK_IMPORTED_MODULE_5__.getInput('sbomLicenseCorrection');
 
 const noProxy = !process.env.NO_PROXY? process.env.no_proxy : process.env.NO_PROXY;
 
-console.log(sbomAutocorrection);
-console.log(sbomLicenseCorrection);
+let sbomAutocorrection;
+let sbomLicenseCorrection;
+
+const bools = ['true', 'false'];
+
+if (inputsbomAutocorrection) {
+    
+    if (bools.includes(inputsbomAutocorrection.toLowerCase())){
+    sbomAutocorrection = inputsbomAutocorrection.toLowerCase() == 'true'? true : false;
+    }
+    else {
+        console.log("sbomAutocorrection must have a value of either true or false");
+        process.exit(1); 
+    }
+}
+
+if (inputsbomLicenseCorrection) {
+    
+    if (bools.includes(inputsbomLicenseCorrection.toLowerCase())){
+    sbomLicenseCorrection = inputsbomLicenseCorrection.toLowerCase() == 'true'? true : false;
+    }
+    else {
+        console.log("sbomLicenseCorrection must have a value of either true or false");
+        process.exit(1);
+    }
+}
 
 let contentType;
 if (!url || !filePath || !secretAccessKey || !accessKey || !subType) {
@@ -37109,10 +37131,9 @@ function generateJson(
         jsonBody["manufactureName"] = manufactureName;
     if (isDefined(supplierName)) jsonBody["supplierName"] = supplierName;
     if (component !== undefined) jsonBody["sbomComponent"] = component;
-    if (isDefined(sbomAutocorrection) && (typeof sbomAutocorrection == 'boolean')) jsonBody["sbomAutoCorrection"] = sbomAutocorrection;
-    if (isDefined(sbomLicenseCorrection) && (typeof sbomLicenseCorrection == 'boolean')) jsonBody["sbomLicenseCorrection"] = sbomLicenseCorrection;
-   
-    console.log(jsonBody);
+    if ((sbomAutocorrection != undefined) && (typeof sbomAutocorrection == 'boolean')) jsonBody["autocorrection"] = sbomAutocorrection;
+    if ((sbomLicenseCorrection != undefined) && (typeof sbomLicenseCorrection == 'boolean')) jsonBody["licenseAutocorrection"] = sbomLicenseCorrection;
+
     return jsonBody;
 };
 
