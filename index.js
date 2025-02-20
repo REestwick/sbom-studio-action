@@ -53,7 +53,7 @@ if (inputsbomLicenseCorrection) {
 
 let contentType;
 if (!url || !filePath || !secretAccessKey || !accessKey || !subType) {
-    console.log("Please provide all required parameters: url, filePath, accessKey, secretAccessKey, and subType.");
+    console.log("Please provide all required parameters: url, filePath, accessKey, secretAccessKey and subType.");
     process.exit(1);
 }
 
@@ -289,7 +289,7 @@ if (threshold != undefined && threshold != '') {
 }
 if (sbomQuality != undefined) {
     if (sbomQuality > sbomQualityPct) {
-        console.log("Sbom Quality bellow acceptable parameter. Build failing.")
+        console.log("Sbom Quality below acceptable parameter. Build failing.")
         process.exit(1)
     }
 }
