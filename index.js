@@ -195,8 +195,23 @@ while (runLoop) {
     if (status == 7110 && enrichmentStatus == 7010) {
         runLoop = false;
         importId = result?.data?.id;
-        sbomQualityPct = result?.data?.sbomQualitySummary?.gradePct;
-        sbomQualityGrade = result?.data?.sbomQualitySummary?.gradeLetter;
+        // Extract quality props for V1
+        let sbomQualityPctV1 = result?.data?.sbomQualitySummary?.gradePct;
+        let sbomQualityGradeV1 = result?.data?.sbomQualitySummary?.gradeLetter;
+        // Extract quality props for V2 
+        let sbomQualityGradeV2 = "";
+        let sbomQualityPctV2 = 0;
+        try{
+            let sbomQualitySummaryV2 = result?.data?.sbomQualitySummaryV2;
+            sbomQualityGradeV2 = sbomQualitySummaryV2?.gradeLetter;
+            sbomQualityPctV2 = Math.ceil(sbomQualitySummaryV2?.gradePct);
+        }
+        catch(err){};
+
+        // Set final quality props with priority to V2
+        sbomQualityGrade = (sbomQualityGradeV2 != "") ? sbomQualityGradeV2 : sbomQualityGradeV1;
+        sbomQualityPct = (sbomQualityPctV2 != 0) ? sbomQualityPctV2 : sbomQualityPctV1;
+
     }
     await new Promise((r) => setTimeout(r, 15000));
 }
